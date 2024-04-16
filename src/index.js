@@ -1,3 +1,6 @@
+
+
+
 import data from './data.json' with { type: 'json' }
 
 const dailyBtn = document.getElementById('dailybtn')
@@ -26,6 +29,8 @@ const oppExerciseHrs = document.getElementById('opp-exercise-hrs')
 const oppSocialHrs = document.getElementById('opp-social-hrs')
 const oppSelfcareHrs = document.getElementById('opp-selfcare-hrs')
 
+
+//REFACTOR TO LOOP THE INDEX - also the dialy/weekly/monthly?
 const defaultDisplay = function () {
     workHrs.textContent = data[0].timeframes.daily.current
     playHrs.textContent = data[1].timeframes.daily.current
