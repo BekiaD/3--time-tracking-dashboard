@@ -25,26 +25,22 @@ const oppExerciseHrs = document.getElementById('opp-exercise-hrs')
 const oppSocialHrs = document.getElementById('opp-social-hrs')
 const oppSelfcareHrs = document.getElementById('opp-selfcare-hrs')
 
-
 //REFACTOR TO LOOP THE INDEX - also the dialy/weekly/monthly?
 const hrsArr = [workHrs, playHrs, studyHrs, exerciseHrs, socialHrs, selfcareHrs]
-const oppHrsArr = [oppWorkHrs, oppPlaykHrs, oppStudyHrs,oppExerciseHrs, oppSocialHrs, oppSelfcareHrs ]
+const oppHrsArr = [oppWorkHrs, oppPlaykHrs, oppStudyHrs, oppExerciseHrs, oppSocialHrs, oppSelfcareHrs]
+
+// document.addEventListener('DOMContentLoaded', defaultDisplay )
 
 const defaultDisplay = function () {
-    for (let i = 0; i < data.length; i++){
-        // console.log(i)
+    for (let i = 0; i < data.length; i++) {
         const dailyCurrentHrs = data[i].timeframes.daily.current
-        // console.log(dailyCurrentHrs)
-        for(let e of hrsArr){
-            // e.textContent = dailyCurrentHrs
-            // console.log(e)
-        }
+        const dailyPreviousHrs = data[i].timeframes.daily.previous
+        hrsArr[i].textContent = dailyCurrentHrs
+        oppHrsArr[i].textContent = dailyPreviousHrs
     }
-
-    for (let e of hrsArr){
-        console.log(e)
-    }
-
+    // OR
+    // |
+    // v
     // workHrs.textContent = data[0].timeframes.daily.current
     // playHrs.textContent = data[1].timeframes.daily.current
     // studyHrs.textContent = data[2].timeframes.daily.current
@@ -64,8 +60,6 @@ const defaultDisplay = function () {
     monthlyBtn.classList.remove('text-white')
 
     const dynamicTime = document.querySelectorAll('.dynamic-time')
-    console.log(dynamicTime)
-
     for (let span of dynamicTime) {
         span.textContent = 'Day'
     }
@@ -73,34 +67,21 @@ const defaultDisplay = function () {
 
 defaultDisplay()
 
-
 dailyBtn.addEventListener('click', defaultDisplay)
 
 weeklyBtn.addEventListener('click', () => {
-    workHrs.textContent = data[0].timeframes.weekly.current
     // workHrs.classList.add('animate-jump') for some reason it doesn't work
-
-    playHrs.textContent = data[1].timeframes.weekly.current
-    studyHrs.textContent = data[2].timeframes.weekly.current
-    exerciseHrs.textContent = data[3].timeframes.weekly.current
-    socialHrs.textContent = data[4].timeframes.weekly.current
-    selfcareHrs.textContent = data[5].timeframes.weekly.current
-
-    oppWorkHrs.textContent = data[0].timeframes.weekly.previous
-    oppPlaykHrs.textContent = data[1].timeframes.weekly.previous
-    oppStudyHrs.textContent = data[2].timeframes.weekly.previous
-    oppExerciseHrs.textContent = data[3].timeframes.weekly.previous
-    oppSocialHrs.textContent = data[4].timeframes.weekly.previous
-    oppSelfcareHrs.textContent = data[5].timeframes.weekly.previous
-
+    for (let i = 0; i < data.length; i++) {
+        const weeklyCurrentHrs = data[i].timeframes.weekly.current
+        const weeklyPreviousHrs = data[i].timeframes.weekly.previous
+        hrsArr[i].textContent = weeklyCurrentHrs
+        oppHrsArr[i].textContent = weeklyPreviousHrs
+    }
 
     const dynamicTime = document.querySelectorAll('.dynamic-time')
-    console.log(dynamicTime)
-
     for (let span of dynamicTime) {
         span.textContent = 'Week'
     }
-    // need to make this work still : to change Last DAY to last WEEK/Month
 
     dailyBtn.classList.remove('text-white')
     weeklyBtn.classList.add('text-white')
@@ -108,86 +89,45 @@ weeklyBtn.addEventListener('click', () => {
 })
 
 monthlyBtn.addEventListener('click', () => {
-    workHrs.textContent = data[0].timeframes.monthly.current
-    playHrs.textContent = data[1].timeframes.monthly.current
-    studyHrs.textContent = data[2].timeframes.monthly.current
-    exerciseHrs.textContent = data[3].timeframes.monthly.current
-    socialHrs.textContent = data[4].timeframes.monthly.current
-    selfcareHrs.textContent = data[5].timeframes.monthly.current
-
-    oppWorkHrs.textContent = data[0].timeframes.monthly.previous
-    oppPlaykHrs.textContent = data[1].timeframes.monthly.previous
-    oppStudyHrs.textContent = data[2].timeframes.monthly.previous
-    oppExerciseHrs.textContent = data[3].timeframes.monthly.previous
-    oppSocialHrs.textContent = data[4].timeframes.monthly.previous
-    oppSelfcareHrs.textContent = data[5].timeframes.monthly.previous
+    for (let i = 0; i < data.length; i++) {
+        const monthlyCurrentHrs = data[i].timeframes.monthly.current
+        const monthlyPreviousHrs = data[i].timeframes.monthly.previous
+        hrsArr[i].textContent = monthlyCurrentHrs
+        oppHrsArr[i].textContent = monthlyPreviousHrs
+    }
 
     dailyBtn.classList.remove('text-white')
     weeklyBtn.classList.remove('text-white')
     monthlyBtn.classList.add('text-white')
 
     const dynamicTime = document.querySelectorAll('.dynamic-time')
-    console.log(dynamicTime)
-
     for (let span of dynamicTime) {
         span.textContent = 'Month'
     }
 })
 
+const selectDivWork = document.getElementById('select-div-work')
+const selectDivPlay = document.getElementById('select-div-play')
+const selectDivStudy = document.getElementById('select-div-study')
+const selectDivExercise = document.getElementById('select-div-exercise')
+const selectDivSocial = document.getElementById('select-div-social')
+const selectDivSelfCare = document.getElementById('select-div-selfcare')
 
 
-function createCurrentBtn() {
+const createnewBtns = function (selectdiv) {
+    //    Button Current
     const btnCurrent = document.createElement('button')
-    btnCurrent.classList.add('hover:bg-dark', 'w-20', 'py-1', 'rounded-xl')
-    const node1 = document.createTextNode('Current')
+    const node1 = document.createTextNode('Share')
     btnCurrent.appendChild(node1)
+    btnCurrent.classList.add('newBtnCurrent', 'hover:bg-dark', 'w-20', 'py-1', 'rounded-xl')
+    console.log(btnCurrent)
 
-    return btnCurrent
+
+    selectdiv.appendChild(btnCurrent)
 }
 
+btnWork.addEventListener('mouseover', () => {
+    createnewBtns(selectDivWork)
+    
+})
 
-
-
-// function createBtns () {
-//     // Button Current
-//     const btnCurrent = document.createElement('button')
-//     const node1 = document.createTextNode('Current')
-//     btnCurrent.appendChild(node1)
-//     btnCurrent.classList.add('hover:bg-dark', 'w-20', 'py-1', 'rounded-xl')
-
-//     // Button previous
-//     const btnPrevious = document.createElement('button')
-//     const node2 = document.createTextNode('Previous')
-//     btnPrevious.appendChild(node2)
-//     btnPrevious.classList.add('hover:bg-dark', 'w-20', 'py-1', 'rounded-xl')
-
-
-
-//     // console.log(btnCurrent, btnPrevious)
-// }
-
-const createDiv = function () {
-    const selectDivSelfCare = document.getElementById('select-div-selfcare')
-
-    createCurrentBtn()
-    console.log(createCurrentBtn)
-
-    // selectDivSelfCare.appendChild(btnCurrent)
-    // selectDivSelfCare.appendChild(btnPrevious)
-
-    return true
-}
-
-
-
-// const createDivReset = function () {
-
-//     return false
-// }
-btnSelfCare.addEventListener('mouseover', createDiv)
-// btnSelfCare.addEventListener('mouseout', createDivReset)
-
-
-
-{/* <button class="hover:bg-dark w-20 py-1 rounded-xl">Current</button>
-<button class="hover:bg-dark w-20 py-1 rounded-xl">Previous</button>  */}
