@@ -106,28 +106,31 @@ monthlyBtn.addEventListener('click', () => {
     }
 })
 
-// const selectDivWork = document.getElementById('select-div-work')
-// const selectDivPlay = document.getElementById('select-div-play')
-// const selectDivStudy = document.getElementById('select-div-study')
-// const selectDivExercise = document.getElementById('select-div-exercise')
-// const selectDivSocial = document.getElementById('select-div-social')
-// const selectDivSelfCare = document.getElementById('select-div-selfcare')
+const selectDivWork = document.getElementById('select-div-work')
+const selectDivPlay = document.getElementById('select-div-play')
+const selectDivStudy = document.getElementById('select-div-study')
+const selectDivExercise = document.getElementById('select-div-exercise')
+const selectDivSocial = document.getElementById('select-div-social')
+const selectDivSelfCare = document.getElementById('select-div-selfcare')
 
 
-// const createnewBtns = function (selectdiv) {
-//     //    Button Current
-//     const btnCurrent = document.createElement('button')
-//     const node1 = document.createTextNode('Share')
-//     btnCurrent.appendChild(node1)
-//     btnCurrent.classList.add('newBtnCurrent', 'hover:bg-dark', 'w-20', 'py-1', 'rounded-xl')
-//     console.log(btnCurrent)
+const createnewBtns = function (selectdiv) {
+    // check if btnCurrent exists
+    // if yes, delete
+    
+    //    Button Current
+    const btnCurrent = document.createElement('button')
+    const node1 = document.createTextNode('Share')
+    btnCurrent.appendChild(node1)
+    btnCurrent.classList.add('newBtnCurrent', 'hover:bg-dark', 'w-20', 'py-1', 'rounded-xl')
+    console.log(btnCurrent)
 
 
-//     selectdiv.appendChild(btnCurrent)
-// }
+    selectdiv.appendChild(btnCurrent)
+}
 
-// btnWork.addEventListener('mouseover', () => {
-//     createnewBtns(selectDivWork)
+btnWork.addEventListener('mouseover', () => {
+    createnewBtns(selectDivWork)
 
-// })
+})
 
